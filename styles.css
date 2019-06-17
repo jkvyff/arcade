@@ -1,17 +1,17 @@
-ul {
-	display: inline;	
+/* ul {
+	display: inline;
 	background-color: #444;
 	padding: 15px;
-}
+} */
 
-li {
+/* li {
 	font-size: em;
 	display: inline;
 	color: white;
 	padding: 15px;
-	background-color: #444;  
+	background-color: #444;
 	width: 60px;
-}
+} */
 
 li:hover {
 	background-color: #111;
