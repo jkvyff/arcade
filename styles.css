@@ -1,20 +1,33 @@
-/* ul {
-	display: inline;
-	background-color: #444;
-	padding: 15px;
-} */
+#app-title {
+	font-family: monospace;
+	text-align: center;
+}
 
-/* li {
-	font-size: em;
-	display: inline;
+ul {
+	background-color: #404040;
+	list-style-type: none;
+	padding-bottom: 40px;
+	padding-top: 20px;
+}
+
+li {
+	float: left;
+	padding-right: 10px;
+	color: #e6e6e6;
+	font-family: monospace;
+	font-size: 20px;
+}
+
+button:hover {
 	color: white;
-	padding: 15px;
-	background-color: #444;
-	width: 60px;
-} */
+}
 
-li:hover {
-	background-color: #111;
+button {
+	background: none;
+	border: none;
+	color: #e6e6e6;
+	font-family: monospace;
+	font-size: 20px;
 }
 
 .hidden {

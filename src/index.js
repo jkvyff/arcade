@@ -13,9 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function displayRockDodger() {
     let li = document.createElement('li');
-    let game = document.createElement('div');
+    let game = document.createElement('button');
     game.id = 'rock-dodger';
-    game.textContent = "Rock Dodger";
+    game.textContent = "ROCK DODGER";
     li.appendChild(game);
 
     let gameList = document.getElementById('game-list');
@@ -25,14 +25,17 @@ document.addEventListener('DOMContentLoaded', () => {
       loadRockDodger();
     });
 
+    let divider = document.createElement('li');
+    divider.textContent = '|';
 
+    gameList.appendChild(divider);
   }
 
   function displayPong() {
     let li = document.createElement('li');
-    let game = document.createElement('div');
+    let game = document.createElement('button');
     game.id = 'pong';
-    game.textContent = "Pong";
+    game.textContent = "PONG";
     li.appendChild(game);
 
     let gameList = document.getElementById('game-list');
@@ -42,13 +45,17 @@ document.addEventListener('DOMContentLoaded', () => {
       loadPong();
     });
 
+    let divider = document.createElement('li');
+    divider.textContent = '|';
+
+    gameList.appendChild(divider);
   }
 
   function displayBrick() {
     let li = document.createElement('li');
-    let game = document.createElement('div');
+    let game = document.createElement('button');
     game.id = 'brick';
-    game.textContent = "Brick";
+    game.textContent = "BRICK";
     li.appendChild(game);
 
     let gameList = document.getElementById('game-list');
@@ -57,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     game.addEventListener('click', () => {
       loadBrick();
     });
+
   }
 
   function loadRockDodger() {
