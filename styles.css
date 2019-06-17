@@ -1,10 +1,14 @@
+body {
+	background: black;
+}
+
 #app-title {
 	font-family: monospace;
 	text-align: center;
+	color: #00ff00;
 }
 
 ul {
-	background-color: #404040;
 	list-style-type: none;
 	padding-bottom: 40px;
 	padding-top: 20px;
@@ -13,19 +17,19 @@ ul {
 li {
 	float: left;
 	padding-right: 10px;
-	color: #e6e6e6;
+	color: #00ff00;
 	font-family: monospace;
 	font-size: 20px;
 }
 
 button:hover {
-	color: white;
+	color: #00e600;
 }
 
 button {
 	background: none;
 	border: none;
-	color: #e6e6e6;
+	color: #00ff00;
 	font-family: monospace;
 	font-size: 20px;
 }
@@ -43,7 +47,9 @@ button {
 }
 
 #game {
-  background-color: #111;
+  background-color: black;
+	border-color: #00ff00;
+	border-style: dashed;
   height: 400px;
   margin: 0 auto;
   overflow: hidden;
