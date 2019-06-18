@@ -36,16 +36,18 @@ class Pong {
 
     game.appendChild(paddle);
 
+    const that = this;
+
     document.addEventListener("keydown", function(e) {
       if (e.key === "ArrowUp") {
-        moveUp(paddle, 10);
+        that.moveUp(paddle, 10);
       }
     });
 
     document.addEventListener("keydown", function(e) {
       if (e.key === "ArrowDown") {
         console.log(e);
-        moveDown(paddle 10);
+        that.moveDown(paddle, 10);
       }
     });
   }
