@@ -42,9 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
       main.removeChild(main.firstChild);
     }
 
+    let score = document.createElement('div')
+    score.id = 'score';
+
     let game = document.createElement('div')
     game.id = 'game';
 
+    main.appendChild(score);
     main.appendChild(game);
   }
 
@@ -69,8 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     clearGame();
     let brick = new BrickGame;
 
-    brick.addBricks();
-    brick.addBall();
     brick.addPaddle();
+    brick.start();
   }
 });

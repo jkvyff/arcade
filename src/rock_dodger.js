@@ -6,6 +6,11 @@ class RockDodger {
   }
 
   start() {
+
+    let score = document.getElementById('score');
+    score.textContent = 'score:0';
+
+
     let game = document.getElementById('game');
     let startButton = document.createElement('button');
 

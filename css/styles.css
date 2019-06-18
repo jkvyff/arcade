@@ -42,6 +42,15 @@ button {
 	display: none;
 }
 
+#score {
+  color: #00ff00;
+  font-size: 30px;
+  text-decoration: none;
+	font-family: monospace;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
 
 #dodger {
   background-color: #00ff00;
