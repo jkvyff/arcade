@@ -36,6 +36,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function clearGame() {
+    let main = document.querySelector('main')
+    while (main.firstChild) {
+      main.removeChild(main.firstChild);
+    }
+
+    let game = document.createElement('div')
+    game.id = 'game';
+
+    main.appendChild(game);
+  }
+
   function loadRockDodger() {
   	let game = document.getElementById('game')
 		let a = document.createElement('a')
@@ -56,29 +68,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function loadPong() {
-  	let game = document.getElementById('game')
-		let a = document.createElement('a')
-		let div = document.createElement('div')
-		let script = document.createElement('script');
+    clearGame();
 
-		a.id = "start"
-		a.href = "javascript:start()"
-		a.textContent = "START"
-		div.id = "pong"
-		div.style.bottom = "0px"
-		div.style.left = "180px"
-		script.src = 'src/pong.js';
-
-		game.appendChild(a)
-		game.appendChild(div)
-		game.appendChild(script)
   }
 
   function loadBrick() {
+    clearGame();
     let brick = new Brick;
 
     brick.addBricks();
     brick.addBall();
     brick.addPaddle();
+    brick.addEventListeners();
   }
 });

@@ -9,7 +9,7 @@ class Brick {
 
     ball.id = 'ball';
     ball.style.bottom = '200px';
-    ball.style.left = '190px';
+    ball.style.left = '192px';
 
     game.appendChild(ball);
 
@@ -49,10 +49,9 @@ class Brick {
 
     paddle.id = 'paddle';
     paddle.style.bottom = '7px';
-    paddle.style.left = '5.2px';
+    paddle.style.left = '165px';
 
     game.appendChild(paddle);
-
 
 
     ///////////paddle movement////////////
@@ -68,30 +67,7 @@ class Brick {
         paddle.style.left = parseInt(paddle.style.left) + -10 + 'px';
       }
     }
-
-
-    ///////////////movement listeners//////////////
-
-    paddle.addEventListener('', () => {
-
-    });
-
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "ArrowLeft") {
-        moveLeft();
-      }
-    });
-
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "ArrowRight") {
-        moveRight();
-      }
-    });
   }
-
-
-
-
 
 
   addBricks() {
@@ -135,5 +111,36 @@ class Brick {
         x = 5.2;
       }
     }
+  }
+
+  addEventListeners() {
+    let paddle = document.getElementById('paddle')
+
+    function moveRight() {
+      if (parseInt(paddle.style.left) < 310) {
+        paddle.style.left = parseInt(paddle.style.left) + 10 + 'px';
+      }
+    }
+
+    function moveLeft() {
+      if (parseInt(paddle.style.left) > 5.2) {
+        paddle.style.left = parseInt(paddle.style.left) + -10 + 'px';
+      }
+    }
+
+    var handleKeyLeft = function(e) {
+      if (e.key === "ArrowLeft") {
+        moveLeft();
+      }
+    }
+
+    var handleKeyRight = function(e) {
+      if (e.key === "ArrowRight") {
+        moveRight();
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyLeft);
+    document.addEventListener("keydown", handleKeyRight);
   }
 }
