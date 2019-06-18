@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function loadBrick() {
     clearGame();
-    let brick = new Brick;
+    let brick = new BrickGame;
 
     brick.addBricks();
     brick.addBall();

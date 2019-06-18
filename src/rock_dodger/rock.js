@@ -1,25 +1,5 @@
 class Rock {
 
-  move(element, direction, pace) {
-    if (direction === 'left') {
-      if (parseInt(element.style.left) > 5.2) {
-        element.style.left = parseInt(element.style.left) + -pace + 'px';
-      }
-    } else if (direction === 'right') {
-      if (parseInt(element.style.left) < 310) {
-        element.style.left = parseInt(element.style.left) + pace + 'px';
-      }
-    } else if (direction === 'up') {
-      if (parseInt(element.style.bottom) > 5.2) {
-        element.style.bottom = parseInt(element.style.bottom) + pace + 'px';
-      }
-    } else if (direction === 'down') {
-      if (parseInt(element.style.bottom) < 310) {
-        element.style.bottom = parseInt(element.style.bottom) + -pace + 'px';
-      }
-    }
-  }
-
   checkCollision(rock) {
 
     let bottom = parseInt(rock.style.bottom)
@@ -59,9 +39,6 @@ class Rock {
         if (that.checkCollision(rock)){
           alert("you lost");
 
-
-
-
           let main = document.querySelector('main')
           while (main.firstChild) {
             main.removeChild(main.firstChild);
@@ -72,10 +49,6 @@ class Rock {
 
           main.appendChild(game);
 
-
-
-
-          
         } else {
           if (parseInt(rock.style.bottom) > 0) {
             animate()
