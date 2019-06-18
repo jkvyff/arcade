@@ -47,7 +47,7 @@ button {
   background-color: #00ff00;
   height: 20px;
   position: absolute;
-  width: 40px;
+  width: 60px;
 }
 
 #game {
@@ -73,34 +73,12 @@ button {
 }
 
 .rock {
-  width: 20px;
-  height: 20px;
+  width: 60px;
+  height: 60px;
   background: #00ff00;
   position: absolute;
-}
+	border-radius: 30%;
 
-.rock:before {
-  content: "";
-  border-bottom: 6px solid #00ff00;
-  border-left: 6px solid #111;
-  border-right: 6px solid #111;
-  height: 0;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 9px;
-}
-
-.rock:after {
-  content: "";
-  border-left: 6px solid #111;
-  border-right: 6px solid #111;
-  border-top: 6px solid #00ff00;
-  bottom: 0;
-  height: 0;
-  left: 0;
-  position: absolute;
-  width: 9px;
 }
 
 .ball {
