@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function displayGame(name) {
     let li = document.createElement('li');
-    let game = document.createElement('div');
+    let game = document.createElement('button');
     game.id = name.toLowerCase().replace(' ', '-');
     game.textContent = name;
     li.appendChild(game);
@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function loadRockDodger() {
+    clearGame();
     let game = document.getElementById('game');
 
 		let a = document.createElement('a')
@@ -86,6 +87,5 @@ document.addEventListener('DOMContentLoaded', () => {
     brick.addBricks();
     brick.addBall();
     brick.addPaddle();
-    brick.addEventListener();
   }
 });

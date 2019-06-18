@@ -1,15 +1,6 @@
 class Brick {
 
-  // preventSpacebar() {
-  //   paddle.addEventListener('keydown', (ev) => {
-  //     console.log(ev)
-  //
-  //   });
-  // }
-
   addBall() {
-
-    ///////////ball object////////////
 
     const game = document.getElementById('game');
     let ball = document.createElement('div');
@@ -19,9 +10,6 @@ class Brick {
     ball.style.left = '192px';
 
     game.appendChild(ball);
-
-
-    ///////////ball movement/////////
 
     function moveRight() {
       if (parseInt(ball.style.left) < 310) {
@@ -48,96 +36,14 @@ class Brick {
 
   addPaddle() {
 
-
-    /////////////paddle object//////////////
-
     const game = document.getElementById('game');
     let paddle = document.createElement('div');
 
     paddle.id = 'brick-paddle';
     paddle.style.bottom = '7px';
-    paddle.style.left = '165px';
+    paddle.style.left = '5.2px';
 
     game.appendChild(paddle);
-
-
-    ///////////paddle movement////////////
-//     function moveRight() {
-//       if (parseInt(paddle.style.left) < 310) {
-//         paddle.style.left = parseInt(paddle.style.left) + 10 + 'px';
-//       }
-//     }
-
-//     function moveLeft() {
-//       if (parseInt(paddle.style.left) > 5.2) {
-//         paddle.style.left = parseInt(paddle.style.left) + -10 + 'px';
-//       }
-//     }
-
-
-//     ///////////////movement listeners//////////////
-
-
-//     document.addEventListener("keydown", function(e) {
-//       if (e.key === "ArrowLeft") {
-//         moveLeft();
-//       }
-//     });
-
-//     document.addEventListener("keydown", function(e) {
-//       if (e.key === "ArrowRight") {
-//         console.log(e);
-//         moveRight();
-//       }
-//     });
-  }
-
-
-  addBricks() {
-
-    /////////////////coordinates for initial brick///////////////
-
-    let x = 5.2;
-    let y = 10;
-
-
-    ////////////creation iteration/////////////
-
-    let i;
-
-    for (i = 0; i <= 30; i++) {
-
-
-      ///////////object creation/////////////
-
-      const game = document.getElementById('game');
-      let brick = document.createElement('div');
-
-      brick.className += 'brick';
-
-      brick.style.left = `${x}px`;
-      brick.style.top = `${y}px`;
-
-      game.appendChild(brick);
-
-
-      //////////////adding bricks to row/////////////
-
-      x += 66
-
-
-      ///////////////////new row after every 6 bricks/////////
-
-      if (i != 0 && i % 6 == 0) {
-        console.log(i);
-        y += 30;
-        x = 5.2;
-      }
-    }
-  }
-
-  addEventListener() {
-    let paddle = document.getElementById('paddle')
 
     function moveRight() {
       if (parseInt(paddle.style.left) < 310) {
@@ -151,14 +57,49 @@ class Brick {
       }
     }
 
-    var handleKeyPress = function(ev) {
-      if (ev.key === "ArrowLeft") {
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "ArrowLeft") {
         moveLeft();
-      } else if (ev.key === "ArrowRight") {
+      }
+    });
+
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "ArrowRight") {
+        console.log(e);
         moveRight();
       }
-    }
+    });
+  }
 
-    document.addEventListener("keydown", handleKeyPress);
+
+  addBricks() {
+
+    let x = 5.2;
+    let y = 10;
+
+    let i;
+
+    for (i = 1; i <= 30; i++) {
+
+      const game = document.getElementById('game');
+      let brick = document.createElement('div');
+
+      brick.className += 'brick';
+
+      brick.style.left = `${x}px`;
+      brick.style.top = `${y}px`;
+
+      brick.id = i;
+
+      game.appendChild(brick);
+
+      x += 66
+
+      if (i != 0 && i % 6 == 0) {
+        console.log(i);
+        y += 30;
+        x = 5.2;
+      }
+    }
   }
 }

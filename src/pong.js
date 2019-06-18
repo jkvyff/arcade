@@ -11,6 +11,55 @@ class Pong {
 
     paddle.id = 'user-paddle';
     paddle.style.bottom = '160px';
+    paddle.style.left = '380px';
+
+    game.appendChild(paddle);
+
+
+
+    ///////////paddle movement////////////
+
+    function moveDown() {
+      if (parseInt(paddle.style.bottom) < 310) {
+        paddle.style.bottom = parseInt(paddle.style.bottom) + -10 + 'px';
+      }
+    }
+
+    function moveUp() {
+      if (parseInt(paddle.style.bottom) > 5.2) {
+        paddle.style.bottom = parseInt(paddle.style.bottom) + 10 + 'px';
+      }
+    }
+
+
+    ///////////////movement listeners//////////////
+
+
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "ArrowUp") {
+        moveUp();
+      }
+    });
+
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "ArrowDown") {
+        console.log(e);
+        moveDown();
+      }
+    });
+  }
+
+
+  addComputerPaddle() {
+
+
+    /////////////paddle object//////////////
+
+    const game = document.getElementById('game');
+    let paddle = document.createElement('div');
+
+    paddle.id = 'computer-paddle';
+    paddle.style.bottom = '160px';
     paddle.style.left = '10px';
 
     game.appendChild(paddle);
@@ -30,72 +79,6 @@ class Pong {
         paddle.style.bottom = parseInt(paddle.style.bottom) + -10 + 'px';
       }
     }
-
-
-    ///////////////movement listeners//////////////
-
-
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "ArrowLeft") {
-        moveUp();
-      }
-    });
-
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "ArrowRight") {
-        console.log(e);
-        moveRight();
-      }
-    });
-  }
-
-
-  addComputerPaddle() {
-
-
-    /////////////paddle object//////////////
-
-    const game = document.getElementById('game');
-    let paddle = document.createElement('div');
-
-    paddle.id = 'computer-paddle';
-    paddle.style.bottom = '160px';
-    paddle.style.left = '380px';
-
-    game.appendChild(paddle);
-
-
-
-    ///////////paddle movement////////////
-
-    function moveDown() {
-      if (parseInt(paddle.style.bottom) < 310) {
-        paddle.style.bottom = parseInt(paddle.style.bottom) + 10 + 'px';
-      }
-    }
-
-    function moveUp() {
-      if (parseInt(paddle.style.bottom) > 5.2) {
-        paddle.style.bottom = parseInt(paddle.style.bottom) + -10 + 'px';
-      }
-    }
-
-
-    ///////////////movement listeners//////////////
-
-
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "ArrowLeft") {
-        moveUp();
-      }
-    });
-
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "ArrowRight") {
-        console.log(e);
-        moveDown();
-      }
-    });
   }
 
 
