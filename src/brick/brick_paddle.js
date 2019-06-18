@@ -42,7 +42,7 @@ class BrickPaddle {
 
     document.addEventListener("keydown", function(e) {
       if (e.key === "ArrowRight") {
-        that.moveRight(paddle, right, 10);
+        that.moveRight(paddle, 10);
       }
     });
   }
