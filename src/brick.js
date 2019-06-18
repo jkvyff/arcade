@@ -16,7 +16,7 @@ class Brick {
 
     ball.className += 'ball';
     ball.style.bottom = '200px';
-    ball.style.left = '190px';
+    ball.style.left = '192px';
 
     game.appendChild(ball);
 
@@ -56,47 +56,41 @@ class Brick {
 
     paddle.id = 'brick-paddle';
     paddle.style.bottom = '7px';
-    paddle.style.left = '5.2px';
+    paddle.style.left = '165px';
 
     game.appendChild(paddle);
 
 
-
     ///////////paddle movement////////////
+//     function moveRight() {
+//       if (parseInt(paddle.style.left) < 310) {
+//         paddle.style.left = parseInt(paddle.style.left) + 10 + 'px';
+//       }
+//     }
 
-    function moveRight() {
-      if (parseInt(paddle.style.left) < 310) {
-        paddle.style.left = parseInt(paddle.style.left) + 10 + 'px';
-      }
-    }
-
-    function moveLeft() {
-      if (parseInt(paddle.style.left) > 5.2) {
-        paddle.style.left = parseInt(paddle.style.left) + -10 + 'px';
-      }
-    }
-
-
-    ///////////////movement listeners//////////////
+//     function moveLeft() {
+//       if (parseInt(paddle.style.left) > 5.2) {
+//         paddle.style.left = parseInt(paddle.style.left) + -10 + 'px';
+//       }
+//     }
 
 
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "ArrowLeft") {
-        moveLeft();
-      }
-    });
+//     ///////////////movement listeners//////////////
 
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "ArrowRight") {
-        console.log(e);
-        moveRight();
-      }
-    });
+
+//     document.addEventListener("keydown", function(e) {
+//       if (e.key === "ArrowLeft") {
+//         moveLeft();
+//       }
+//     });
+
+//     document.addEventListener("keydown", function(e) {
+//       if (e.key === "ArrowRight") {
+//         console.log(e);
+//         moveRight();
+//       }
+//     });
   }
-
-
-
-
 
 
   addBricks() {
@@ -140,5 +134,31 @@ class Brick {
         x = 5.2;
       }
     }
+  }
+
+  addEventListener() {
+    let paddle = document.getElementById('paddle')
+
+    function moveRight() {
+      if (parseInt(paddle.style.left) < 310) {
+        paddle.style.left = parseInt(paddle.style.left) + 10 + 'px';
+      }
+    }
+
+    function moveLeft() {
+      if (parseInt(paddle.style.left) > 5.2) {
+        paddle.style.left = parseInt(paddle.style.left) + -10 + 'px';
+      }
+    }
+
+    var handleKeyPress = function(ev) {
+      if (ev.key === "ArrowLeft") {
+        moveLeft();
+      } else if (ev.key === "ArrowRight") {
+        moveRight();
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyPress);
   }
 }
