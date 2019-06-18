@@ -1,5 +1,4 @@
-// game logic from https://github.com/learn-co-curriculum/javascript-rock-dodger
-
+// game logic from https://github.com/learn-co-curriculum/javascript-rock-dodge
 const DODGER = document.getElementById('dodger')
 const GAME = document.getElementById('game')
 const GAME_HEIGHT = 400
