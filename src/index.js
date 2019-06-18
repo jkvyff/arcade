@@ -50,23 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function loadRockDodger() {
     clearGame();
-    let game = document.getElementById('game');
+    let rock_dodger = new RockDodger;
 
-		let a = document.createElement('a')
-		let div = document.createElement('div')
-		let script = document.createElement('script');
-
-		a.id = "start"
-		a.href = "javascript:start()"
-		a.textContent = "START"
-		div.id = "dodger"
-		div.style.bottom = "0px"
-		div.style.left = "180px"
-		script.src = 'src/rock_dodger.js';
-
-		game.appendChild(a)
-		game.appendChild(div)
-		game.appendChild(script)
+    rock_dodger.addDodger();
+    rock_dodger.start();
   }
 
   function loadPong() {
@@ -77,8 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
     pong.addComputerPaddle();
     pong.addBall();
   }
-
-
 
   function loadBrick() {
     clearGame();
