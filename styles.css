@@ -8,18 +8,22 @@ body {
 	color: #00ff00;
 }
 
-ul {
-	list-style-type: none;
+header ul {
+  list-style-type: none;
 	padding-bottom: 40px;
 	padding-top: 20px;
 }
 
-li {
-	float: left;
+header li {
+  float:left ;
 	padding-right: 10px;
 	color: #00ff00;
 	font-family: monospace;
 	font-size: 20px;
+}
+
+header li:not(:first-child) div:before {
+    content: " | ";
 }
 
 button:hover {
