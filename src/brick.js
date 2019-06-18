@@ -103,7 +103,7 @@ class Brick {
     }
   }
 
-  addEventListeners() {
+  addEventListener() {
     let paddle = document.getElementById('paddle')
 
     function moveRight() {
@@ -118,19 +118,14 @@ class Brick {
       }
     }
 
-    var handleKeyLeft = function(e) {
-      if (e.key === "ArrowLeft") {
+    var handleKeyPress = function(ev) {
+      if (ev.key === "ArrowLeft") {
         moveLeft();
-      }
-    }
-
-    var handleKeyRight = function(e) {
-      if (e.key === "ArrowRight") {
+      } else if (ev.key === "ArrowRight") {
         moveRight();
       }
     }
 
-    document.addEventListener("keydown", handleKeyLeft);
-    document.addEventListener("keydown", handleKeyRight);
+    document.addEventListener("keydown", handleKeyPress);
   }
 }

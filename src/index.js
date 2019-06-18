@@ -79,6 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
     brick.addBricks();
     brick.addBall();
     brick.addPaddle();
-    brick.addEventListeners();
+    brick.addEventListener();
   }
 });
