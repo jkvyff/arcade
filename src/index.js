@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		a.id = "start"
 		a.href = "javascript:start()"
 		a.textContent = "START"
-		div.id = "dodger"
+		div.id = "pong"
 		div.style.bottom = "0px"
 		div.style.left = "180px"
 		script.src = 'src/pong.js';
@@ -106,21 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function loadBrick() {
-  	let game = document.getElementById('game')
-		let a = document.createElement('a')
-		let div = document.createElement('div')
-		let script = document.createElement('script');
+    let brick = new Brick;
 
-		a.id = "start"
-		a.href = "javascript:start()"
-		a.textContent = "START"
-		div.id = "dodger"
-		div.style.bottom = "0px"
-		div.style.left = "180px"
-		script.src = 'src/brick.js';
-
-		game.appendChild(a)
-		game.appendChild(div)
-		game.appendChild(script)
+    brick.addBricks();
+    brick.addBall();
+    brick.addPaddle();
   }
 });

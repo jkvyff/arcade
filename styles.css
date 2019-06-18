@@ -98,3 +98,29 @@ button {
   position: absolute;
   width: 9px;
 }
+
+#ball {
+	color: #00ff00;
+	background-color: #00ff00;
+	height: 13px;
+	width: 13px;
+	border-radius: 50%;
+	position: absolute;
+}
+
+#paddle {
+	color: #00ff00;
+	background-color: #00ff00;
+	height: 10px;
+	width: 80px;
+	position: absolute;
+}
+
+.brick {
+	color: #00ff00;
+	background-color: #00ff00;
+	height: 10px;
+	width: 60px;
+	position: absolute;
+
+}
