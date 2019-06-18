@@ -1,5 +1,12 @@
 class Brick {
 
+  // preventSpacebar() {
+  //   paddle.addEventListener('keydown', (ev) => {
+  //     console.log(ev)
+  //
+  //   });
+  // }
+
   addBall() {
 
     ///////////ball object////////////
@@ -7,7 +14,7 @@ class Brick {
     const game = document.getElementById('game');
     let ball = document.createElement('div');
 
-    ball.id = 'ball';
+    ball.className += 'ball';
     ball.style.bottom = '200px';
     ball.style.left = '190px';
 
@@ -47,7 +54,7 @@ class Brick {
     const game = document.getElementById('game');
     let paddle = document.createElement('div');
 
-    paddle.id = 'paddle';
+    paddle.id = 'brick-paddle';
     paddle.style.bottom = '7px';
     paddle.style.left = '5.2px';
 
@@ -72,9 +79,6 @@ class Brick {
 
     ///////////////movement listeners//////////////
 
-    paddle.addEventListener('', () => {
-
-    });
 
     document.addEventListener("keydown", function(e) {
       if (e.key === "ArrowLeft") {
@@ -84,6 +88,7 @@ class Brick {
 
     document.addEventListener("keydown", function(e) {
       if (e.key === "ArrowRight") {
+        console.log(e);
         moveRight();
       }
     });

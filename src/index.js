@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function displayRockDodger() {
+
+
     let li = document.createElement('li');
     let game = document.createElement('button');
     game.id = 'rock-dodger';
@@ -39,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     li.appendChild(game);
 
     let gameList = document.getElementById('game-list');
+
     gameList.appendChild(li);
 
     game.addEventListener('click', () => {
@@ -68,7 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function loadRockDodger() {
-  	let game = document.getElementById('game')
+    let game = document.getElementById('game');
+
 		let a = document.createElement('a')
 		let div = document.createElement('div')
 		let script = document.createElement('script');
@@ -87,25 +91,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function loadPong() {
-  	let game = document.getElementById('game')
-		let a = document.createElement('a')
-		let div = document.createElement('div')
-		let script = document.createElement('script');
+    let pong = new Pong;
 
-		a.id = "start"
-		a.href = "javascript:start()"
-		a.textContent = "START"
-		div.id = "pong"
-		div.style.bottom = "0px"
-		div.style.left = "180px"
-		script.src = 'src/pong.js';
-
-		game.appendChild(a)
-		game.appendChild(div)
-		game.appendChild(script)
+    pong.addUserPaddle();
+    pong.addComputerPaddle();
+    pong.addBall();
   }
 
   function loadBrick() {
+
     let brick = new Brick;
 
     brick.addBricks();
