@@ -1,10 +1,31 @@
 class Pong {
 
+  moveRight(element, pace) {
+    if (parseInt(element.style.left) < 310) {
+      element.style.left = parseInt(element.style.left) + pace + 'px';
+    }
+  }
+
+  moveLeft(element, pace) {
+    if (parseInt(element.style.left) > 5.2) {
+      element.style.left = parseInt(element.style.left) + -pace + 'px';
+    }
+  }
+
+  moveUp(element, pace) {
+    if (parseInt(element.style.bottom) > 5.2) {
+      element.style.bottom = parseInt(element.style.bottom) + pace + 'px';
+    }
+  }
+
+  moveDown(element, pace) {
+    if (parseInt(element.style.bottom) < 310) {
+      element.style.bottom = parseInt(element.style.bottom) + -pace + 'px';
+    }
+  }
+
 
   addUserPaddle() {
-
-
-    /////////////paddle object//////////////
 
     const game = document.getElementById('game');
     let paddle = document.createElement('div');
@@ -15,45 +36,21 @@ class Pong {
 
     game.appendChild(paddle);
 
-
-
-    ///////////paddle movement////////////
-
-    function moveDown() {
-      if (parseInt(paddle.style.bottom) < 310) {
-        paddle.style.bottom = parseInt(paddle.style.bottom) + -10 + 'px';
-      }
-    }
-
-    function moveUp() {
-      if (parseInt(paddle.style.bottom) > 5.2) {
-        paddle.style.bottom = parseInt(paddle.style.bottom) + 10 + 'px';
-      }
-    }
-
-
-    ///////////////movement listeners//////////////
-
-
     document.addEventListener("keydown", function(e) {
       if (e.key === "ArrowUp") {
-        moveUp();
+        moveUp(paddle, 10);
       }
     });
 
     document.addEventListener("keydown", function(e) {
       if (e.key === "ArrowDown") {
         console.log(e);
-        moveDown();
+        moveDown(paddle 10);
       }
     });
   }
 
-
   addComputerPaddle() {
-
-
-    /////////////paddle object//////////////
 
     const game = document.getElementById('game');
     let paddle = document.createElement('div');
@@ -63,28 +60,9 @@ class Pong {
     paddle.style.left = '10px';
 
     game.appendChild(paddle);
-
-
-
-    ///////////paddle movement////////////
-
-    function moveDown() {
-      if (parseInt(paddle.style.bottom) < 310) {
-        paddle.style.bottom = parseInt(paddle.style.bottom) + 10 + 'px';
-      }
-    }
-
-    function moveUp() {
-      if (parseInt(paddle.style.bottom) > 5.2) {
-        paddle.style.bottom = parseInt(paddle.style.bottom) + -10 + 'px';
-      }
-    }
   }
 
-
   addBall() {
-
-    ///////////ball object////////////
 
     const game = document.getElementById('game');
     let ball = document.createElement('div');
@@ -94,29 +72,5 @@ class Pong {
     ball.style.left = '193px';
 
     game.appendChild(ball);
-
-
-    ///////////ball movement/////////
-
-    function moveRight() {
-      if (parseInt(ball.style.left) < 310) {
-        ball.style.left = parseInt(ball.style.left) + 10 + 'px';
-      }
-    }
-
-    function moveLeft() {
-      if (parseInt(ball.style.left) > 5.2) {
-        ball.style.left = parseInt(ball.style.left) + -10 + 'px';
-      }
-    }
-
-    function moveUp() {
-      ball.style.bottom = parseInt(ball.style.bottom) + 10 + 'px';
-    }
-
-    function moveDown() {
-        ball.style.bottom = parseInt(ball.style.bottom) + -10 + 'px';
-    }
   }
-
 }
