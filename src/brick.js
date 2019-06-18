@@ -56,17 +56,7 @@ class Brick {
 
     ///////////paddle movement////////////
 
-    function moveRight() {
-      if (parseInt(paddle.style.left) < 310) {
-        paddle.style.left = parseInt(paddle.style.left) + 10 + 'px';
-      }
-    }
-
-    function moveLeft() {
-      if (parseInt(paddle.style.left) > 5.2) {
-        paddle.style.left = parseInt(paddle.style.left) + -10 + 'px';
-      }
-    }
+ 
   }
 
 
