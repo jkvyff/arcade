@@ -6,65 +6,34 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function displayGamesList() {
-    displayRockDodger();
-    displayPong();
-    displayBrick();
+    displayGame("Rock Dodger");
+    displayGame("Pong");
+    displayGame("Brick");
   }
 
-  function displayRockDodger() {
+  function displayGame(name) {
     let li = document.createElement('li');
-    let game = document.createElement('button');
-    game.id = 'rock-dodger';
-    game.textContent = "ROCK DODGER";
+    let game = document.createElement('div');
+    game.id = name.toLowerCase().replace(' ', '-');
+    game.textContent = name;
     li.appendChild(game);
 
     let gameList = document.getElementById('game-list');
     gameList.appendChild(li);
 
     game.addEventListener('click', () => {
-      loadRockDodger();
+      switch(name) {
+        case "Rock Dodger":
+          loadRockDodger();
+          break;
+        case "Pong":
+          loadPong();
+          break;
+        case "Brick":
+          loadBrick();
+          break;
+      }
     });
-
-    let divider = document.createElement('li');
-    divider.textContent = '|';
-
-    gameList.appendChild(divider);
-  }
-
-  function displayPong() {
-    let li = document.createElement('li');
-    let game = document.createElement('button');
-    game.id = 'pong';
-    game.textContent = "PONG";
-    li.appendChild(game);
-
-    let gameList = document.getElementById('game-list');
-    gameList.appendChild(li);
-
-    game.addEventListener('click', () => {
-      loadPong();
-    });
-
-    let divider = document.createElement('li');
-    divider.textContent = '|';
-
-    gameList.appendChild(divider);
-  }
-
-  function displayBrick() {
-    let li = document.createElement('li');
-    let game = document.createElement('button');
-    game.id = 'brick';
-    game.textContent = "BRICK";
-    li.appendChild(game);
-
-    let gameList = document.getElementById('game-list');
-    gameList.appendChild(li);
-
-    game.addEventListener('click', () => {
-      loadBrick();
-    });
-
   }
 
   function loadRockDodger() {
