@@ -71,12 +71,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function loadPong() {
     clearGame();
-    let pong = new Pong;
+    let pong = new Pong();
 
     pong.addUserPaddle();
     pong.addComputerPaddle();
-    pong.addBall();
-    pong.start();
+    let ball = pong.addBall();
+    pong.start(ball);
   }
 
 
