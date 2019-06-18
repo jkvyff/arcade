@@ -22,7 +22,7 @@ header li {
 	font-size: 20px;
 }
 
-header li:not(:first-child) div:before {
+header li:not(:last-child):after {
     content: " | ";
 }
 

@@ -76,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     pong.addUserPaddle();
     pong.addComputerPaddle();
     pong.addBall();
+    pong.start();
   }
 
 

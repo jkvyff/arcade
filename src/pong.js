@@ -1,5 +1,6 @@
 class Pong {
 
+
   moveRight(element, pace) {
     if (parseInt(element.style.left) < 310) {
       element.style.left = parseInt(element.style.left) + pace + 'px';
@@ -30,6 +31,8 @@ class Pong {
     const game = document.getElementById('game');
     let paddle = document.createElement('div');
 
+    const that = this;
+
     paddle.id = 'user-paddle';
     paddle.style.bottom = '160px';
     paddle.style.left = '380px';
@@ -38,14 +41,14 @@ class Pong {
 
     document.addEventListener("keydown", function(e) {
       if (e.key === "ArrowUp") {
-        moveUp(paddle, 10);
+        that.moveUp(paddle, 10);
       }
     });
 
     document.addEventListener("keydown", function(e) {
       if (e.key === "ArrowDown") {
         console.log(e);
-        moveDown(paddle 10);
+        that.moveDown(paddle, 10);
       }
     });
   }
@@ -73,4 +76,9 @@ class Pong {
 
     game.appendChild(ball);
   }
+
+  start() {
+    setInterval(function(){ alert("Hello"); }, 50000);
+  }
+
 }
