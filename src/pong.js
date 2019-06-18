@@ -39,6 +39,8 @@ class Pong {
 
     game.appendChild(paddle);
 
+    const that = this;
+
     document.addEventListener("keydown", function(e) {
       if (e.key === "ArrowUp") {
         that.moveUp(paddle, 10);
