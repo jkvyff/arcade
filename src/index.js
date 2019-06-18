@@ -49,7 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function loadRockDodger() {
-  	let game = document.getElementById('game')
+    let game = document.getElementById('game');
+
 		let a = document.createElement('a')
 		let div = document.createElement('div')
 		let script = document.createElement('script');
@@ -69,8 +70,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function loadPong() {
     clearGame();
+    let pong = new Pong;
 
+    pong.addUserPaddle();
+    pong.addComputerPaddle();
+    pong.addBall();
   }
+
+
 
   function loadBrick() {
     clearGame();

@@ -103,7 +103,7 @@ button {
   width: 9px;
 }
 
-#ball {
+.ball {
 	color: #00ff00;
 	background-color: #00ff00;
 	height: 13px;
@@ -112,7 +112,7 @@ button {
 	position: absolute;
 }
 
-#paddle {
+#brick-paddle {
 	color: #00ff00;
 	background-color: #00ff00;
 	height: 10px;
@@ -127,4 +127,20 @@ button {
 	width: 60px;
 	position: absolute;
 
+}
+
+#user-paddle {
+	color: #00ff00;
+	background-color: #00ff00;
+	height: 80px;
+	width: 10px;
+	position: absolute;
+}
+
+#computer-paddle {
+	color: #00ff00;
+	background-color: #00ff00;
+	height: 80px;
+	width: 10px;
+	position: absolute;
 }
