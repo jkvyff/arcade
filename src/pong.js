@@ -155,32 +155,34 @@ class Pong {
 
     let highScores = document.getElementById('high-scores');
 
+    loadScores();
 
-    // loadScores();
-    //
-    // function loadScores() {
-    //   fetch('http://localhost:3000/scores')
-    //   .then(res => res.json())
-    //   .then(json => {
-    //     displayScores(json);
-    //   })
-    // }
-    //
-    // function displayScores(json) {
-    //   scoreArr = [];
-    //   for (let i = 0; i < json.length; i++) {
-    //     if (json[i].game_id == 1) {
-    //       scoreArr.push(json[i]);
-    //     }
-    //   }
-    //   console.log(scoreArr);
-    // }
+    function loadScores() {
+      fetch('http://localhost:3000/scores')
+      .then(res => res.json())
+      .then(json => {
+        displayScores(json);
+      })
+    }
 
-    // let score = document.createElement('li');
-    // score.className += 'high-scores';
-    // score.textContent = `${json[i].player}: ${json[i].score}`;
-    //
-    // highScores.appendChild(score);
+    function displayScores(json) {
+      let scoreArr = [];
+      for (let i = 0; i < json.length; i++) {
+        if (json[i].game_id == 2) {
+          scoreArr.push(json[i]);
+        }
+      }
+      console.log(scoreArr);
+      scoreArr.sort((a,b) => (a.score < b.score) ? 1 : ((b.score < a.score) ? -1 : 0));
+
+      scoreArr.forEach((scr) => {
+        let score = document.createElement('li');
+        score.className += 'high-scores';
+        score.textContent = `${scr.player}: ${scr.score}`;
+
+        highScores.appendChild(score);
+      });
+    }
 
     game.appendChild(startButton);
 
