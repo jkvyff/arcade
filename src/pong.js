@@ -44,19 +44,19 @@ class Pong {
 
     let score = document.getElementById('score');
 
-    let min = 8
+    let min = 12
     let halfH = 40
     console.log(ballObj, user, comp);
-    if (ballObj.x > 385 || ballObj.x < 5) {
+    if (ballObj.x > 390 || ballObj.x < 0) {
       // check if ball hit front or back wall
       return this.endGame();
-    } else if ((ballObj.x - user.x < min) && (ballObj.y - user.y > 70) && (ballObj.y - user.y <= 85)) {
+    } else if ((ballObj.x - user.x > 0) && (ballObj.x - user.x <= min) && (ballObj.y - user.y > 70) && (ballObj.y - user.y <= 85)) {
       // check top of user paddle for collision
       return 3;
-    } else if ((ballObj.x - user.x < min) && (ballObj.y - user.y > -5) && (ballObj.y - user.y <= 10)) {
+    } else if ((ballObj.x - user.x > 0) && (ballObj.x - user.x <= min) && (ballObj.y - user.y > -10) && (ballObj.y - user.y <= 5)) {
       // check botton of user paddle for collision
       return 4;
-    } else if ((ballObj.x - user.x < min) && (ballObj.y - user.y > 0) && (ballObj.y - user.y <= 80)) {
+    } else if ((ballObj.x - user.x > 0) && (ballObj.x - user.x <= min) && (ballObj.y - user.y > 5) && (ballObj.y - user.y <= 70)) {
       // check mid of user paddle for collision
       return 1;
     } else if ((comp.x - 6 - ballObj.x < min) && (ballObj.y - comp.y > 0) && (comp.y - ballObj.y <= 80)) {
@@ -83,7 +83,14 @@ class Pong {
         ballObj.vectX = -ballObj.vectX;
         break;
       case 1:
-        ballObj.vectX = -ballObj.vectX;
+        if (ballObj.vectY === 0) {
+          ballObj.vectY = 3;
+          ballObj.vectX = -ballObj.vectX;
+        } else if (ballObj.vectX < 12 & ballObj.vectX > -24) {
+          ballObj.vectX = -1.05 * ballObj.vectX;
+        } else {
+          ballObj.vectX = -ballObj.vectX;
+        }
         break;
       case 2:
         ballObj.vectY = -ballObj.vectY;
@@ -183,8 +190,8 @@ class Pong {
       let ballObj = new Ball(192, 192, 0, 0);
       let user = new Paddle(10, 160);
       let comp = new Paddle(380, 160);
-      ballObj.vectX = -5;
-      ballObj.vectY = 3;
+      ballObj.vectX = 5;
+      ballObj.vectY = 0;
       that.addListen(user);
 
       that.gameInterval = setInterval(function(){
