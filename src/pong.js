@@ -40,8 +40,6 @@ class Pong {
     game.appendChild(ball);
   }
 
-
-
   checkCollision(ballObj, user, comp ) {
 
     let score = document.getElementById('score');
@@ -201,7 +199,72 @@ class Pong {
     user = null;
     comp = null;
     clearInterval(this.gameInterval);
-    alert('howdy');
+    let score = document.getElementById('score');
+    console.log(score.textContent.substr(6))
+
+    let payload = {score: `${score.textContent.substr(6)}`, game_id: '2', player: 'none'};
+    console.log(payload)
+
+    fetch('http://localhost:3000/scores', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    }).then(res => res.json())
+    .then(json => {
+      console.log(json);
+      displayScores(json);
+    })
+
+    let main = document.querySelector('main')
+    while (main.firstChild) {
+      main.removeChild(main.firstChild);
+    }
+
+    let game = document.createElement('div')
+    game.id = 'game';
+
+    let yourScore = document.createElement('div')
+    yourScore.id = 'your-score';
+    yourScore.textContent = `your score: ${score.textContent.substr(6)}`
+
+    game.appendChild(yourScore);
+    main.appendChild(game);
+
+    let highScores = document.createElement('ul');
+    highScores.id = 'high-scores';
+    main.appendChild(highScores);
+
+    loadScores();
+
+    function loadScores() {
+      fetch('http://localhost:3000/scores')
+      .then(res => res.json())
+      .then(json => {
+        console.log(json);
+        displayScores(json);
+      })
+    }
+
+    function displayScores(json) {
+      let scoreArr = [];
+      for (let i = 0; i < json.length; i++) {
+        if (json[i].game_id == 2) {
+          scoreArr.push(json[i]);
+        }
+      }
+      console.log(scoreArr);
+      scoreArr.sort((a,b) => (a.score < b.score) ? 1 : ((b.score < a.score) ? -1 : 0));
+
+      scoreArr.forEach((scr) => {
+        let score = document.createElement('li');
+        score.className += 'high-scores';
+        score.textContent = `${scr.player}: ${scr.score}`;
+
+        highScores.appendChild(score);
+      });
+    }
   }
 }
 

@@ -56,6 +56,15 @@ button {
 	margin-bottom: 10px;
 }
 
+#your-score {
+  color: #00ff00;
+  font-size: 30px;
+  text-decoration: none;
+	font-family: monospace;
+	text-align: center;
+	margin-top: 100px;
+}
+
 
 #dodger {
   background-color: #00ff00;
