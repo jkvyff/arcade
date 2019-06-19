@@ -76,8 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     pong.addUserPaddle();
     pong.addComputerPaddle();
-    let ball = pong.addBall();
-    pong.start(ball);
+    pong.addBall();
+    pong.start();
   }
 
   function loadBrick() {
