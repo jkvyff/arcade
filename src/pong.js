@@ -1,34 +1,9 @@
 class Pong {
 
-  moveRight(element, pace) {
-    if (parseInt(element.style.left) < 310) {
-      element.style.left = parseInt(element.style.left) + pace + 'px';
-    }
+  constructor() {
+    this.gameInterval = null;
+    this.score = 0;
   }
-
-  moveLeft(element, pace) {
-    if (parseInt(element.style.left) > 5.2) {
-      element.style.left = parseInt(element.style.left) + -pace + 'px';
-    }
-  }
-
-  moveUp(element, pace) {
-    if (parseInt(element.style.bottom) > 5.2) {
-      element.style.bottom = parseInt(element.style.bottom) + pace + 'px';
-    }
-  }
-
-  moveDown(element, pace) {
-    if (parseInt(element.style.bottom) < 310) {
-      element.style.bottom = parseInt(element.style.bottom) + -pace + 'px';
-    }
-  }
-
-  moveElement(element, x, y) {
-    element.style.left = x + 'px';
-    element.style.bottom = y + 'px';
-  }
-
 
   addUserPaddle() {
     const game = document.getElementById('game');
@@ -39,21 +14,6 @@ class Pong {
     paddle.style.left = '10px';
 
     game.appendChild(paddle);
-
-    const that = this;
-
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "ArrowUp") {
-        that.moveUp(paddle, 10);
-      }
-    });
-
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "ArrowDown") {
-        console.log(e);
-        that.moveDown(paddle, 10);
-      }
-    });
   }
 
   addComputerPaddle() {
@@ -72,52 +32,120 @@ class Pong {
 
     const game = document.getElementById('game');
     let ball = document.createElement('div');
-    let ballObj = new Ball(193, 193, 0, 0);
     
     ball.className += 'ball';
-    ball.style.bottom = ballObj.y+'px';
-    ball.style.left = ballObj.x+'px';
+    ball.style.bottom = '193px';
+    ball.style.left = '193px';
 
     game.appendChild(ball);
-    return ballObj;
   }
 
-  checkCollision(ballObj) {
+  checkCollision(ballObj, user, comp ) {
+    let min = 8
+    let halfH = 40
+    console.log(ballObj, user, comp);
     if (ballObj.x > 385 || ballObj.x < 5) {
+      // check if ball hit front or back wall
+      return this.endGame();
+    } else if ((ballObj.x - user.x < min) && (ballObj.y - user.y > 70) && (ballObj.y - user.y <= 85)) {
+      // check top of user paddle for collision
+      return 3;
+    } else if ((ballObj.x - user.x < min) && (ballObj.y - user.y > -5) && (ballObj.y - user.y <= 10)) {
+      // check botton of user paddle for collision
+      return 4;
+    } else if ((ballObj.x - user.x < min) && (ballObj.y - user.y > 0) && (ballObj.y - user.y <= 80)) {
+      // check mid of user paddle for collision
+      return 1;
+    } else if ((comp.x - 6 - ballObj.x < min) && (ballObj.y - comp.y > 0) && (comp.y - ballObj.y <= 80)) {
+      //check if ball hit computer paddle
       return 1;
     } else if (ballObj.y > 385 || ballObj.y < 5) {
       return 2;
     }
-    return 0
+    return 0;
   }
 
-  update(ballObj) {
-    if (this.checkCollision(ballObj) === 0) {
-    } else if (this.checkCollision(ballObj) === 1) {
-        ballObj.vectX = -ballObj.vectX
-    } else if (this.checkCollision(ballObj) === 2) {
-        ballObj.vectY = -ballObj.vectY
+  update(ballObj, user, comp) {
+    // ball movement
+    switch(this.checkCollision(ballObj, user, comp)) {
+      case 0:
+        break;
+      case 3:
+        ballObj.vectY = ballObj.vectY + 1;
+        ballObj.vectX = -ballObj.vectX;
+        break
+      case 4:
+        ballObj.vectY = ballObj.vectY - 1;
+        ballObj.vectX = -ballObj.vectX;
+        break;
+      case 1:
+        ballObj.vectX = -ballObj.vectX;
+        break;
+      case 2:
+        ballObj.vectY = -ballObj.vectY;
+        break;
     }
-    ballObj.x = ballObj.x + ballObj.vectX
-    ballObj.y = ballObj.y + ballObj.vectY
+    ballObj.x = ballObj.x + ballObj.vectX;
+    ballObj.y = ballObj.y + ballObj.vectY;
+
+    // computer movement
+    if (ballObj.y - comp.y > 12) {
+      comp.y = comp.y + ballObj.vectY;
+    } else if (ballObj.y - comp.y < 12) {
+      comp.y = comp.y - ballObj.vectY;
+    }
   }
 
-  draw(ballObj) {
+  draw(ballObj, user, comp) {
     let ball = document.querySelector('.ball');
-    ball.style.bottom = ballObj.y+'px';
-    ball.style.left = ballObj.x+'px';
+    ball.style.left = ballObj.x +'px';
+    ball.style.bottom = ballObj.y +'px';
+
+    let player = document.getElementById('user-paddle');
+    player.style.left = user.x+'px';
+    player.style.bottom = user.y+'px';
+
+    let computer = document.getElementById('computer-paddle');
+    computer.style.left = comp.x+'px';
+    computer.style.bottom = comp.y+'px';
   }
 
-  start(ballObj) {
-    let ball = document.querySelector('.ball');
+  addListen(user) {
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "ArrowUp" && user.y < 310) {
+        user.y = user.y + 7;
+      }
+    });
+
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "ArrowDown" && user.y > 7) {
+        user.y = user.y - 7;
+      }
+    });
+  }
+
+  start() {
+
+    let ballObj = new Ball(192, 192, 0, 0);
+    let user = new Paddle(10, 160);
+    let comp = new Paddle(380, 160);
     let that = this;
-    ballObj.vectX = -7;
+    ballObj.vectX = -5;
     ballObj.vectY = 3;
-    setInterval(function(){ 
-      that.update(ballObj)
-      that.draw(ballObj);
-      console.log(ballObj)
-    }, 50);
+    this.addListen(user);
+
+    this.gameInterval = setInterval(function(){ 
+      that.update(ballObj, user, comp);
+      that.draw(ballObj, user, comp);
+    }, 30);
+  }
+
+  endGame(ballObj, user, comp) {
+    ballObj = null;
+    user = null;
+    comp = null;
+    clearInterval(this.gameInterval);
+    alert('howdy');
   }
 }
 
@@ -127,5 +155,12 @@ class Ball {
     this.y = y;
     this.vectX = vectX;
     this.vectY = vectY;
+  }
+}
+
+class Paddle {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
   }
 }
