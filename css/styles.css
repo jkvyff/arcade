@@ -6,6 +6,7 @@ body {
 	font-family: monospace;
 	text-align: center;
 	color: #00ff00;
+	font-size: 30px;
 }
 
 header ul {
@@ -40,6 +41,10 @@ button {
 
 .hidden {
 	display: none;
+}
+
+#high-scores {
+	margin-left: 200px;
 }
 
 #score {
@@ -79,6 +84,24 @@ button {
   top: 4rem;
 	font-family: monospace;
 
+}
+
+#leaderboard {
+	color: #00ff00;
+  font-size: 30px;
+  text-decoration: none;
+	font-family: monospace;
+	margin-bottom: 10px;
+	text-align: center;
+	margin-top: 50px;
+}
+
+.high-scores {
+  color: #00ff00;
+  font-size: 20px;
+  text-decoration: none;
+	font-family: monospace;
+	margin-bottom: 10px;
 }
 
 .rock {

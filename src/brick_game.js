@@ -11,6 +11,9 @@ class BrickGame {
   }
 
   start() {
+    let score = document.getElementById('score');
+    score.textContent = 'score:0';
+
     let game = document.getElementById('game');
     let startButton = document.createElement('button');
 
@@ -22,6 +25,20 @@ class BrickGame {
       addBricks();
       addBall();
     })
+
+    let highScores = document.getElementById('high-scores');
+
+    let firstScore = document.createElement('li');
+    let secondScore = document.createElement('li');
+    let thirdScore = document.createElement('li');
+
+    firstScore.id = 'first-score';
+    secondScore.id = 'second-score';
+    thirdScore.id = 'third-score';
+
+    highScores.appendChild(firstScore);
+    highScores.appendChild(secondScore);
+    highScores.appendChild(thirdScore);
 
     game.appendChild(startButton);
 
