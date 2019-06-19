@@ -32,7 +32,7 @@ class Pong {
 
     const game = document.getElementById('game');
     let ball = document.createElement('div');
-    
+
     ball.className += 'ball';
     ball.style.bottom = '193px';
     ball.style.left = '193px';
@@ -40,7 +40,12 @@ class Pong {
     game.appendChild(ball);
   }
 
+
+
   checkCollision(ballObj, user, comp ) {
+
+    let score = document.getElementById('score');
+
     let min = 8
     let halfH = 40
     console.log(ballObj, user, comp);
@@ -58,6 +63,7 @@ class Pong {
       return 1;
     } else if ((comp.x - 6 - ballObj.x < min) && (ballObj.y - comp.y > 0) && (comp.y - ballObj.y <= 80)) {
       //check if ball hit computer paddle
+      score.textContent = `score: ${parseInt(score.textContent.substr(6)) + 1}`;
       return 1;
     } else if (ballObj.y > 385 || ballObj.y < 5) {
       return 2;
@@ -125,19 +131,67 @@ class Pong {
   }
 
   start() {
+    let score = document.getElementById('score');
+    score.textContent = 'score:0';
 
-    let ballObj = new Ball(192, 192, 0, 0);
-    let user = new Paddle(10, 160);
-    let comp = new Paddle(380, 160);
-    let that = this;
-    ballObj.vectX = -5;
-    ballObj.vectY = 3;
-    this.addListen(user);
 
-    this.gameInterval = setInterval(function(){ 
-      that.update(ballObj, user, comp);
-      that.draw(ballObj, user, comp);
-    }, 30);
+    let game = document.getElementById('game');
+    let startButton = document.createElement('button');
+
+    startButton.textContent = 'start'
+    startButton.id = 'start'
+
+    startButton.addEventListener('click', () => {
+      startButton.style.display = 'none';
+      startBall();
+    })
+
+    let highScores = document.getElementById('high-scores');
+
+
+    // loadScores();
+    //
+    // function loadScores() {
+    //   fetch('http://localhost:3000/scores')
+    //   .then(res => res.json())
+    //   .then(json => {
+    //     displayScores(json);
+    //   })
+    // }
+    //
+    // function displayScores(json) {
+    //   scoreArr = [];
+    //   for (let i = 0; i < json.length; i++) {
+    //     if (json[i].game_id == 1) {
+    //       scoreArr.push(json[i]);
+    //     }
+    //   }
+    //   console.log(scoreArr);
+    // }
+
+    // let score = document.createElement('li');
+    // score.className += 'high-scores';
+    // score.textContent = `${json[i].player}: ${json[i].score}`;
+    //
+    // highScores.appendChild(score);
+
+    game.appendChild(startButton);
+
+    const that = this;
+
+    function startBall() {
+      let ballObj = new Ball(192, 192, 0, 0);
+      let user = new Paddle(10, 160);
+      let comp = new Paddle(380, 160);
+      ballObj.vectX = -5;
+      ballObj.vectY = 3;
+      that.addListen(user);
+
+      that.gameInterval = setInterval(function(){
+        that.update(ballObj, user, comp);
+        that.draw(ballObj, user, comp);
+      }, 30);
+    }
   }
 
   endGame(ballObj, user, comp) {

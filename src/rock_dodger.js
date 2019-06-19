@@ -25,25 +25,32 @@ class RockDodger {
 
     let highScores = document.getElementById('high-scores');
 
-    let firstScore = document.createElement('li');
-    let secondScore = document.createElement('li');
-    let thirdScore = document.createElement('li');
 
-    firstScore.id = 'first-score';
-    secondScore.id = 'second-score';
-    thirdScore.id = 'third-score';
+    // loadScores();
+    //
+    // function loadScores() {
+    //   fetch('http://localhost:3000/scores')
+    //   .then(res => res.json())
+    //   .then(json => {
+    //     displayScores(json);
+    //   })
+    // }
+    //
+    // function displayScores(json) {
+    //   scoreArr = [];
+    //   for (let i = 0; i < json.length; i++) {
+    //     if (json[i].game_id == 1) {
+    //       scoreArr.push(json[i]);
+    //     }
+    //   }
+    //   console.log(scoreArr);
+    // }
 
-    firstScore.className += 'high-scores';
-    secondScore.className += 'high-scores';
-    thirdScore.className += 'high-scores';
-
-    firstScore.textContent = 'SMW: 100';
-    secondScore.textContent = 'CSW: 23';
-    thirdScore.textContent = 'BOB: 12';
-
-    highScores.appendChild(firstScore);
-    highScores.appendChild(secondScore);
-    highScores.appendChild(thirdScore);
+    // let score = document.createElement('li');
+    // score.className += 'high-scores';
+    // score.textContent = `${json[i].player}: ${json[i].score}`;
+    //
+    // highScores.appendChild(score);
 
     game.appendChild(startButton);
 
