@@ -1,7 +1,7 @@
 class Dodger {
 
   moveRight(element, pace) {
-    if (parseInt(element.style.left) < 310) {
+    if (parseInt(element.style.left) < 330) {
       element.style.left = parseInt(element.style.left) + pace + 'px';
     }
   }

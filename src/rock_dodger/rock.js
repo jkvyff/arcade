@@ -32,9 +32,13 @@ class Rock {
     game.appendChild(rock);
 
     const that = this;
+    let score = document.getElementById('score');
+    let i = 1;
 
     function animate() {
+
       rock.style.bottom = parseInt(rock.style.bottom) + -1 + 'px';
+
       setTimeout(function () {
         if (that.checkCollision(rock)){
           alert("you lost");
@@ -54,6 +58,8 @@ class Rock {
             animate()
           } else {
             rock.remove();
+            console.log(score.textContent.substr(6));
+            score.textContent = `score: ${parseInt(score.textContent.substr(6)) + 1}`;
           }
         }
       }, 1);

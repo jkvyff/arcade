@@ -36,20 +36,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function clearGame() {
+  function clearAndDisplayGame() {
     let main = document.querySelector('main')
     while (main.firstChild) {
       main.removeChild(main.firstChild);
     }
 
-    let game = document.createElement('div')
+    let score = document.createElement('div');
+    score.id = 'score';
+
+    let game = document.createElement('div');
     game.id = 'game';
 
+    let leaderboard = document.createElement('div');
+    leaderboard.id = 'leaderboard';
+    leaderboard.textContent = 'leaderboard';
+
+    let highScores = document.createElement('ul');
+    highScores.id = 'high-scores';
+
+
+    main.appendChild(score);
     main.appendChild(game);
+    main.appendChild(leaderboard);
+    main.appendChild(highScores);
   }
 
   function loadRockDodger() {
-    clearGame();
+    clearAndDisplayGame();
     let rock_dodger = new RockDodger;
 
     rock_dodger.addDodger();
@@ -57,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function loadPong() {
-    clearGame();
+    clearAndDisplayGame();
     let pong = new Pong();
 
     pong.addUserPaddle();
@@ -67,11 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function loadBrick() {
-    clearGame();
+    clearAndDisplayGame();
     let brick = new BrickGame;
 
-    brick.addBricks();
-    brick.addBall();
     brick.addPaddle();
+    brick.start();
   }
 });
