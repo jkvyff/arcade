@@ -88,7 +88,7 @@ class Pong {
         if (ballObj.vectY === 0) {
           ballObj.vectY = 3;
           ballObj.vectX = -ballObj.vectX;
-        } else if (ballObj.vectX < 12) {
+        } else if (ballObj.vectX < 12 & ballObj.vectX > -24) {
           ballObj.vectX = -1.05 * ballObj.vectX;
         } else {
           ballObj.vectX = -ballObj.vectX;
@@ -192,8 +192,8 @@ class Pong {
       let ballObj = new Ball(192, 192, 0, 0);
       let user = new Paddle(10, 160);
       let comp = new Paddle(380, 160);
-      ballObj.vectX = -5;
-      ballObj.vectY = 3;
+      ballObj.vectX = 5;
+      ballObj.vectY = 0;
       that.addListen(user);
 
       that.gameInterval = setInterval(function(){
