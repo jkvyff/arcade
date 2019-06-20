@@ -31,7 +31,7 @@ class BrickGame {
     loadScores();
 
     function loadScores() {
-      fetch('http://localhost:3000/scores')
+      fetch('https://agile-wildwood-13888.herokuapp.com/scores')
       .then(res => res.json())
       .then(json => {
         displayScores(json);

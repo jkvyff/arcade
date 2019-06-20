@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function displayGamesList() {
     displayGame("Rock Dodger");
     displayGame("Pong");
-    displayGame("Brick");
+    // displayGame("Brick");
   }
 
   function displayGame(name) {

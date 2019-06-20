@@ -83,7 +83,7 @@ class Rock {
 
             if (enterInitials.name.value != "") {
               let payload = {score: `${score.textContent.substr(6)}`, game_id: '1', player: `${enterInitials.name.value.toUpperCase()}`};
-              fetch('http://localhost:3000/scores', {
+              fetch('https://agile-wildwood-13888.herokuapp.com/scores', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json'
@@ -119,7 +119,7 @@ class Rock {
           loadScores();
 
           function loadScores() {
-            fetch('http://localhost:3000/scores')
+            fetch('https://agile-wildwood-13888.herokuapp.com/scores')
             .then(res => res.json())
             .then(json => {
               displayScores(json);
