@@ -44,6 +44,7 @@ class RockDodger {
       }
       console.log(scoreArr);
       scoreArr.sort((a,b) => (a.score < b.score) ? 1 : ((b.score < a.score) ? -1 : 0));
+      scoreArr = scoreArr.splice(0,7);
 
       scoreArr.forEach((scr) => {
         let score = document.createElement('li');

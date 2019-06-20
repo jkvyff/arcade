@@ -125,12 +125,14 @@ class Pong {
 
   addListen(user) {
     document.addEventListener("keydown", function(e) {
+      e.preventDefault();
       if (e.key === "ArrowUp" && user.y < 310) {
         user.y = user.y + 7;
       }
     });
 
     document.addEventListener("keydown", function(e) {
+      e.preventDefault();
       if (e.key === "ArrowDown" && user.y > 7) {
         user.y = user.y - 7;
       }

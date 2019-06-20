@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     leaderboard.id = 'leaderboard';
     leaderboard.textContent = 'leaderboard';
 
-    let highScores = document.createElement('ul');
+    let highScores = document.createElement('ol');
     highScores.id = 'high-scores';
 
 

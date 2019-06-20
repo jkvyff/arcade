@@ -9,6 +9,27 @@ body {
 	font-size: 30px;
 }
 
+#enter-initials-text {
+	height:60px;
+	font-size:40px;
+	width: 100px;
+	background-color: black;
+	border-color: #00ff00;
+	color: #00ff00;
+	font-family: monospace;
+	text-align: center;
+	margin-top: 30px;
+
+}
+
+input:focus, textarea:focus {
+    outline: none;
+}
+
+button:focus {
+    outline: none;
+}
+
 header ul {
   list-style-type: none;
 	padding-bottom: 40px;
@@ -23,6 +44,14 @@ header li {
 	font-size: 20px;
 }
 
+#initials-submit {
+	background: none;
+	border: none;
+	color: #00ff00;
+	font-family: monospace;
+	font-size: 20px;
+}
+
 header li:not(:last-child):after {
     content: " | ";
 }
@@ -32,6 +61,7 @@ button:hover {
 }
 
 button {
+	padding-top: 10px;
 	background: none;
 	border: none;
 	color: #00ff00;
@@ -100,9 +130,11 @@ button {
   font-size: 30px;
   text-decoration: none;
 	font-family: monospace;
-	margin-bottom: 10px;
-	text-align: center;
+	margin-bottom: 15px;
+	/* text-align: center; */
 	margin-top: 50px;
+	margin-left: 200px;
+	text-decoration: underline;
 }
 
 .high-scores {
