@@ -45,17 +45,6 @@ class Rock {
           let score = document.getElementById('score');
           console.log(score.textContent.substr(6))
 
-          let payload = {score: `${score.textContent.substr(6)}`, game_id: '1', player: 'none'};
-          console.log(payload)
-
-          fetch('http://localhost:3000/scores', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload)
-          })
-
           let main = document.querySelector('main')
           while (main.firstChild) {
             main.removeChild(main.firstChild);
@@ -68,10 +57,62 @@ class Rock {
           yourScore.id = 'your-score';
           yourScore.textContent = `your score: ${score.textContent.substr(6)}`
 
+          let enterInitials = document.createElement('FORM');
+
+          let enterInitialsText = document.createElement('input');
+
+          enterInitialsText.setAttribute("type", "text");
+          enterInitialsText.setAttribute("value", "");
+          enterInitialsText.setAttribute("name", "name");
+          enterInitialsText.setAttribute("maxlength", "3");
+          enterInitialsText.id = 'enter-initials-text';
+
+          let newLine = document.createElement('br');
+
+          let enterInitialsSubmit = document.createElement('input');
+          enterInitialsSubmit.setAttribute("type", "submit");
+          enterInitialsSubmit.setAttribute("value", "Submit");
+          enterInitialsSubmit.id = 'initials-submit';
+
+          enterInitials.appendChild(enterInitialsText);
+          enterInitials.appendChild(newLine);
+          enterInitials.appendChild(enterInitialsSubmit);
+
+          enterInitials.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            if (enterInitials.name.value != "") {
+              let payload = {score: `${score.textContent.substr(6)}`, game_id: '1', player: `${enterInitials.name.value.toUpperCase()}`};
+              fetch('http://localhost:3000/scores', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+              })
+              let main = document.querySelector('main')
+              while (main.firstChild) {
+                main.removeChild(main.firstChild);
+              }
+
+              let game = document.createElement('div')
+              game.id = 'game';
+
+              main.appendChild(game);
+            }
+          })
+
+
+
+
+
           game.appendChild(yourScore);
+          game.appendChild(enterInitials);
           main.appendChild(game);
 
-          let highScores = document.createElement('ul');
+
+
+          let highScores = document.createElement('ol');
           highScores.id = 'high-scores';
           main.appendChild(highScores);
 
@@ -87,6 +128,7 @@ class Rock {
 
           function displayScores(json) {
             let scoreArr = [];
+
             for (let i = 0; i < json.length; i++) {
               if (json[i].game_id == 1) {
                 scoreArr.push(json[i]);
@@ -94,6 +136,7 @@ class Rock {
             }
             console.log(scoreArr);
             scoreArr.sort((a,b) => (a.score < b.score) ? 1 : ((b.score < a.score) ? -1 : 0));
+            scoreArr = scoreArr.splice(0, 7);
 
             scoreArr.forEach((scr) => {
               let score = document.createElement('li');

@@ -123,12 +123,14 @@ class Pong {
 
   addListen(user) {
     document.addEventListener("keydown", function(e) {
+      e.preventDefault();
       if (e.key === "ArrowUp" && user.y < 310) {
         user.y = user.y + 7;
       }
     });
 
     document.addEventListener("keydown", function(e) {
+      e.preventDefault();
       if (e.key === "ArrowDown" && user.y > 7) {
         user.y = user.y - 7;
       }
@@ -170,9 +172,8 @@ class Pong {
           scoreArr.push(json[i]);
         }
       }
-      console.log(scoreArr);
       scoreArr.sort((a,b) => (a.score < b.score) ? 1 : ((b.score < a.score) ? -1 : 0));
-
+      scoreArr.length = 5;
       scoreArr.forEach((scr) => {
         let score = document.createElement('li');
         score.className += 'high-scores';
