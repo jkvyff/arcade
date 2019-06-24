@@ -155,10 +155,6 @@ button {
 }
 
 .ball {
-	color: #00ff00;
-	background-color: #00ff00;
-	height: 13px;
-	width: 13px;
 	border-radius: 50%;
 	position: absolute;
 }
@@ -172,12 +168,7 @@ button {
 }
 
 .brick {
-	color: #00ff00;
-	background-color: #00ff00;
-	height: 10px;
-	width: 60px;
 	position: absolute;
-
 }
 
 #user-paddle {
