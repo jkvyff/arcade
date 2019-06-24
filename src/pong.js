@@ -4,6 +4,7 @@ class Pong {
     this.gameInterval = null;
     this.score = 0;
     this.leaderboard = [];
+    this.ball = null;
   }
 
   addUserPaddle() {
@@ -30,15 +31,9 @@ class Pong {
   }
 
   addBall() {
-
-    const game = document.getElementById('game');
-    let ball = document.createElement('div');
-
-    ball.className += 'ball';
-    ball.style.bottom = '193px';
-    ball.style.left = '193px';
-
-    game.appendChild(ball);
+    let ballObj = new Ball(192, 192);
+    ballObj.createBall();
+    return ballObj;
   }
 
   checkCollision(ballObj, user, comp ) {
@@ -138,20 +133,18 @@ class Pong {
   }
 
   loadScores() {
-    let that = this;
-    return fetch('https://agile-wildwood-13888.herokuapp.com/scores')
+    return fetch(BASE_URL)
     .then(res => res.json())
-    .then(json => {this.filterAndSortScores(json)});
+    .then(json => {this.filterScores(json)});
   }
 
-  filterAndSortScores(json) {
+  filterScores(json) {
     let scoreArr = [];
     for (let i = 0; i < json.length; i++) {
       if (json[i].game_id == 2) {
         scoreArr.push(json[i]);
       }
     }
-    scoreArr.sort((a,b) => (a.score < b.score) ? 1 : ((b.score < a.score) ? -1 : 0));
     scoreArr.length = 7;
     this.leaderboard = scoreArr;
     this.displayScores();
@@ -185,8 +178,6 @@ class Pong {
       startBall();
     })
 
-    let highScores = document.getElementById('high-scores');
-
     this.loadScores();
 
     game.appendChild(startButton);
@@ -194,7 +185,7 @@ class Pong {
     const that = this;
 
     function startBall() {
-      let ballObj = new Ball(192, 192, 0, 0);
+      let ballObj = new Ball(192, 192);
       let user = new Paddle(10, 160);
       let comp = new Paddle(380, 160);
       ballObj.vectX = 5;
@@ -213,23 +204,15 @@ class Pong {
     let score = this.score;
     let payload = {score: `${score}`, game_id: '2', player: 'none'};
 
-    fetch('https://agile-wildwood-13888.herokuapp.com/scores', {
+    fetch(BASE_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(payload)
     })
-    .then(res => res.json())
-    .then(json => {
-      that.addScoreToHighscores(json);
-    })
   }
 
-  addScoreToHighscores(json) {
-    this.leaderboard.push(json);
-    this.filterAndSortScores(this.leaderboard);
-  }
 
   endGame(ballObj, user, comp) {
 
@@ -278,8 +261,8 @@ class Pong {
       e.preventDefault();
 
       if (enterInitials.name.value != "") {
-        let payload = {score: `${score.textContent.substr(6)}`, game_id: '2', player: `${enterInitials.name.value.toUpperCase()}`};
-        fetch('https://agile-wildwood-13888.herokuapp.com/scores', {
+        let payload = {score: `${this.score}`, game_id: '2', player: `${enterInitials.name.value.toUpperCase()}`};
+        fetch(BASE_URL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -298,10 +281,6 @@ class Pong {
       }
     })
 
-
-
-
-
     game.appendChild(yourScore);
     game.appendChild(enterInitials);
     main.appendChild(game);
@@ -312,47 +291,10 @@ class Pong {
     highScores.id = 'high-scores';
     main.appendChild(highScores);
 
-    loadScores();
-
-    function loadScores() {
-      fetch('https://agile-wildwood-13888.herokuapp.com/scores')
-      .then(res => res.json())
-      .then(json => {
-        displayScores(json);
-      })
-    }
-
-    function displayScores(json) {
-      let scoreArr = [];
-
-      for (let i = 0; i < json.length; i++) {
-        if (json[i].game_id == 2) {
-          scoreArr.push(json[i]);
-        }
-      }
-      console.log(scoreArr);
-      scoreArr.sort((a,b) => (a.score < b.score) ? 1 : ((b.score < a.score) ? -1 : 0));
-      scoreArr = scoreArr.splice(0, 7);
-
-      scoreArr.forEach((scr) => {
-        let score = document.createElement('li');
-        score.className += 'high-scores';
-        score.textContent = `${scr.player}: ${scr.score}`;
-
-        highScores.appendChild(score);
-      });
-    }
+    this.loadScores();
   }
 }
 
-class Ball {
-  constructor(x, y, vectX, vectY) {
-    this.x = x;
-    this.y = y;
-    this.vectX = vectX;
-    this.vectY = vectY;
-  }
-}
 
 class Paddle {
   constructor(x, y) {

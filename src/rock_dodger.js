@@ -28,10 +28,12 @@ class RockDodger {
     loadScores();
 
     function loadScores() {
-      fetch('https://agile-wildwood-13888.herokuapp.com/scores')
+      fetch(BASE_URL)
       .then(res => res.json())
       .then(json => {
+        console.log(json)
         displayScores(json);
+
       })
     }
 
